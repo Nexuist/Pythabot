@@ -41,7 +41,7 @@ def raw(parseinfo):
     bot.privmsg(parseinfo["chan"],str(parseinfo))
     
 def kick(parseinfo):
-    bot.sendraw("KICK %s %s %s" % (parseinfo["chan"],parseinfo["args"][1],parseinfo["args"][2]))
+    bot.sendraw("KICK %s %s %s" % (parseinfo["chan"],parseinfo["args"][1]," ".join(parseinfo["args"][2:])))
 
 def mute(parseinfo):
     if bot.settings["mute"] == "off":
@@ -63,6 +63,9 @@ def prefix(parseinfo):
     prefix = prefix[0:1]
     bot.prefix = prefix
     bot.privmsg(parseinfo["chan"],"My prefix is now %s." % prefix)
+
+def sendraw(parseinfo):
+    bot.sendraw(" ".join(parseinfo["args"][1:]))
 
 config = {\
     "host":"irc.freenode.net",
@@ -93,5 +96,6 @@ bot.addcommand("kick",kick,"admins",3)
 bot.addcommand("mute",mute,"admins",1)
 bot.addcommand("kickjoin",kickjoin,"admins",1)
 bot.addcommand("prefix",prefix,"owner",2)
+bot.addcommand("sendraw",sendraw,"owner",2)
 bot.connect()
 bot.listen()
