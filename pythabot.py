@@ -30,7 +30,7 @@ class Pythabot:
     def addcommand(self,text,func,permission,arglength):
         #You use the addcommand function to add commands to the commandslist. You'll see what this is for later.
         self.commands[text] = {"func":func,"permission":permission,"arglength":arglength}
-        self.commandlist.append(self.prefix+text)
+        self.commandlist.append(text)
     
     def initparse(self,line):
         #Here's an example value of the line variable: "':techboy6601!~IceChat77@unaffiliated/techboy6601','PRIVMSG','#botters-test',':yo','wuts','up'"
