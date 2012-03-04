@@ -73,7 +73,7 @@ config = {\
     "pass":"",
     "chans":["#botters-test"],
     "admins":[""],
-    "ownermask":"unaffiliated/techboy6601",
+    "ownermask":"",
     "prefix":"^",
     "quitmsg":"I'm a bot made with the Pythabot framework"
     }
