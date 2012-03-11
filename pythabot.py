@@ -6,6 +6,9 @@ import sys,socket,string
 class Pythabot:
     #This will be executed when the class is created, so here we initialize all the important variables
     def __init__(self,config):
+        print("Pythabot v3.0.0")
+        print("Simple IRC framework")
+        print("Made by Techboy6601")
         self.config = config
         self.buffer = ""
         self.debounce = False
