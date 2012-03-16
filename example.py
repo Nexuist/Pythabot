@@ -71,15 +71,15 @@ def startimefunc(parseinfo):
     bot.privmsg(parseinfo["chan"],"I have been on since: %s GMT" % startime)
 
 config = {\
-    "host":"irc.freenode.net",
+    "host":"",
     "port":6667,
-    "nick":"techsbot",
-    "ident":"Pythabot3",
-    "realname":"Techboy6601",
+    "nick":"",
+    "ident":"",
+    "realname":"",
     "pass":"",
-    "chans":["#botters-test"],
-    "admins":["techboy6601"],
-    "ownermask":"unaffiliated/techboy6601",
+    "chans":["#botters-test","#botters"],
+    "admins":[""],
+    "ownermask":"",
     "prefix":"^",
     "quitmsg":"This is my quit message."
     }
