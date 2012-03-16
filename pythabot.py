@@ -12,6 +12,7 @@ class Pythabot:
         self.config = config
         self.buffer = ""
         self.debounce = False
+        self.debounce2 = False
         self.commands = {}
         self.commandlist = []
         self.settings = {"mute":"off","kickjoin":"on"} #System settings
@@ -105,7 +106,8 @@ class Pythabot:
                         self.sendraw("JOIN %s" % chan)
                         print("Joined %s" % chan)
                         self.debounce == True # This is set because some servers may send MOTD more than once, and we don't want to spam-join
-                if ("is already in use." in self.buffer): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
+                if ("is already in use." in self.buffer and self.debounce2 == False): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
+                    self.debounce2 = True #Thanks to sonicrules1234 for pointing out security hole
                     self.quit("%s is already in use. Try again." % self.config["nick"])
                 temp=string.split(self.buffer, "\n") #Splits newlines from the buffer, and returns it in a list
                 self.buffer=temp.pop( ) #This makes the buffer equal to the last line of the buffer. Why? Because sockets are hacky and sometimes you'll end up with half a sentence instead of a fully-received one.
