@@ -101,14 +101,11 @@ class Pythabot:
             while 1:
                 self.buffer = self.buffer+self.sock.recv(1024) #Because sockets are so hacky to work with, we have to keep a buffer open so that everything gets sent
                 print self.buffer
-                if ("123" == self.buffer.split(" ")[1] and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
+                if ("MOTD" in self.buffer and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
                     for chan in self.config["chans"]: #So that's our cue to start joining channels
                         self.sendraw("JOIN %s" % chan)
                         print("Joined %s" % chan)
-                        self.debounce == True # This is set because some servers may send MOTD more than once, and we don't want to spam-join
-                if ("443" == self.buffer.split(" ")[1] and self.debounce2 == False): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
-                    self.debounce2 = True #Thanks to sonicrules1234 for pointing out security hole
-                    self.quit("%s is already in use. Try again." % self.config["nick"])
+                        self.debounce == True # This is set because some servers may send MOTD more than once, and we don't want to spam-joi
                 temp=self.buffer
                 temp = temp.split("\n") #Splits newlines from the buffer, and returns it in a list
                 self.buffer=temp.pop( ) #This makes the buffer equal to the last line of the buffer. Why? Because sockets are hacky and sometimes you'll end up with half a sentence instead of a fully-received one.
