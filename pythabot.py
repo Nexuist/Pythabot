@@ -109,7 +109,8 @@ class Pythabot:
                 if ("443" == self.buffer.split(" ")[1] and self.debounce2 == False): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
                     self.debounce2 = True #Thanks to sonicrules1234 for pointing out security hole
                     self.quit("%s is already in use. Try again." % self.config["nick"])
-                temp=self.buffer.split("\n") #Splits newlines from the buffer, and returns it in a list
+                temp=self.buffer
+                temp = temp.split("\n") #Splits newlines from the buffer, and returns it in a list
                 self.buffer=temp.pop( ) #This makes the buffer equal to the last line of the buffer. Why? Because sockets are hacky and sometimes you'll end up with half a sentence instead of a fully-received one.
                 for line in temp:
                     line=string.rstrip(line)
