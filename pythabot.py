@@ -42,7 +42,7 @@ class Pythabot:
         chan = line[2] #This would be #botters-test
         msg = " ".join(line[3:]) #And this would select everything after and in ':yo': in this case, ':yo wuts up'
         msg = msg[1:] #This takes away that annoying colon, so you're left with 'yo wuts up'
-        args = string.split(msg) #Finally, this splits the message into arguments, so now 'yo wuts up' is turned into 'yo','wuts','up'
+        args = msg.split(" ") #Finally, this splits the message into arguments, so now 'yo wuts up' is turned into 'yo','wuts','up'
         firstarg = args[0] #This would then select the very first argument, in this case 'yo'
         exapoint = senderline.find("!")#Remember senderline? This finds the first ! in it and returns its position.
         tildepoint = senderline.find("~") + 1 #This finds the first ~, and adds one to its position - you will see why later
@@ -101,19 +101,19 @@ class Pythabot:
             while 1:
                 self.buffer = self.buffer+self.sock.recv(1024) #Because sockets are so hacky to work with, we have to keep a buffer open so that everything gets sent
                 print self.buffer
-                if ("MOTD" in self.buffer and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
+                if ("123" == self.buffer.split(" ")[1] and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
                     for chan in self.config["chans"]: #So that's our cue to start joining channels
                         self.sendraw("JOIN %s" % chan)
                         print("Joined %s" % chan)
                         self.debounce == True # This is set because some servers may send MOTD more than once, and we don't want to spam-join
-                if ("is already in use." in self.buffer and self.debounce2 == False): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
+                if ("443" == self.buffer.split(" ")[1] and self.debounce2 == False): #Uh-oh! Your nick is already being used. So unfortunetly you'll have to restart the bot.
                     self.debounce2 = True #Thanks to sonicrules1234 for pointing out security hole
                     self.quit("%s is already in use. Try again." % self.config["nick"])
-                temp=string.split(self.buffer, "\n") #Splits newlines from the buffer, and returns it in a list
+                temp=self.buffer.split("\n") #Splits newlines from the buffer, and returns it in a list
                 self.buffer=temp.pop( ) #This makes the buffer equal to the last line of the buffer. Why? Because sockets are hacky and sometimes you'll end up with half a sentence instead of a fully-received one.
                 for line in temp:
                     line=string.rstrip(line)
-                    line=string.split(line)
+                    line=line.split(" ")
                     if(line[0]=="PING"): #Make sure to respond to PINGs!
                         self.sendraw("PONG %s" % line[1])
                         print("PONG %s" % line[1])
