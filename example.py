@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import pythabot
+import pythabot,time
 
 def hi(parseinfo):
     bot.privmsg(parseinfo["chan"],"Hi, %s." % parseinfo["sender"])
@@ -67,20 +67,24 @@ def prefix(parseinfo):
 def sendraw(parseinfo):
     bot.sendraw(" ".join(parseinfo["args"][1:]))
 
+def startimefunc(parseinfo):
+    bot.privmsg(parseinfo["chan"],"I have been on since: %s GMT" % startime)
+
 config = {\
     "host":"irc.freenode.net",
     "port":6667,
-    "nick":"pythabot",
+    "nick":"techsbot",
     "ident":"Pythabot3",
-    "realname":"Pythabot framework",
+    "realname":"Techboy6601",
     "pass":"",
     "chans":["#botters-test"],
-    "admins":[""],
-    "ownermask":"",
+    "admins":["techboy6601"],
+    "ownermask":"unaffiliated/techboy6601",
     "prefix":"^",
-    "quitmsg":"I'm a bot made with the Pythabot framework"
+    "quitmsg":"This is my quit message."
     }
 bot = pythabot.Pythabot(config)
+startime =  time.strftime("%a, %B %d %Y [%H:%M:%S]", time.gmtime())
 bot.addcommand("hi",hi,"all",1)
 bot.addcommand("botquit",quit,"owner",1)
 bot.addcommand("mode",mode,"admins",3)
@@ -97,5 +101,6 @@ bot.addcommand("mute",mute,"admins",1)
 bot.addcommand("kickjoin",kickjoin,"admins",1)
 bot.addcommand("prefix",prefix,"owner",2)
 bot.addcommand("sendraw",sendraw,"owner",2)
+bot.addcommand("start-time",startimefunc,"all",1)
 bot.connect()
 bot.listen()
