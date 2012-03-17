@@ -1,5 +1,5 @@
 ================================================
--		PYTHABOT V3.0                  -
+-		PYTHABOT V3.2.5                -
 +	      Written in Python 	       +
 -	     IRC Framework for beginners       -
 +	  Contact: admin@studiotech.tk         +
@@ -214,26 +214,6 @@ args - A list containing the message split into pieces, ex.
 You can use these to your advantage to get the most out of
 your bot!
 
-
-Settings
-========
-	Pythabot comes with 2 default system settings: mute
-and kickjoin.
-
-	+ Mute: If this is on, the bot won't be able to talk
-with the server. 
-	
-	+ Kickjoin: This makes the bot rejoin if it was 
-kicked.
-
-You can set these with the following code:
-
-------------------------------------------------------------
-bot.settings["mute"] == "on"
-------------------------------------------------------------
-
-You can change mute to kickjoin and on to off to do other
-things with the settings.
 
 Next steps
 ==========
