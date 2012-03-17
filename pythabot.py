@@ -6,7 +6,7 @@ import sys,socket,string
 class Pythabot:
     #This will be executed when the class is created, so here we initialize all the important variables
     def __init__(self,config):
-        print("Pythabot v3.0.0")
+        print("Pythabot v3.2.5")
         print("Simple IRC framework")
         print("Made by Techboy6601")
         self.config = config
@@ -15,7 +15,6 @@ class Pythabot:
         self.debounce2 = False
         self.commands = {}
         self.commandlist = []
-        self.settings = {"mute":"off","kickjoin":"on"} #System settings
         self.prefix = self.config["prefix"]
         self.sock = socket.socket() #Initialize socket.
         print("Ready to connect")
@@ -66,7 +65,8 @@ class Pythabot:
 
     def parse(self,parseinfo):
         msg = parseinfo["firstarg"] #In our example, this is 'yo'
-        if msg[0:1] == self.prefix: #self.prefix is ^ (if you haven't changed it), so here we check if somebody is talking to the bot or not
+        prelen = len(self.prefix) #Yay! Multi-character prefixes!
+        if msg[0:prelen] == self.prefix: #self.prefix is ^ (if you haven't changed it), so here we check if somebody is talking to the bot or not
             msg = msg[1:]
             if msg in self.commands: #This is empty now, but it won't be; it checks if what you said is in the commandslist
                 if (self.commands[msg]["permission"] == "owner"): #Check the instruction manual for what permissions mean
@@ -101,11 +101,11 @@ class Pythabot:
             while 1:
                 self.buffer = self.buffer+self.sock.recv(1024) #Because sockets are so hacky to work with, we have to keep a buffer open so that everything gets sent
                 print self.buffer
-                if ("MOTD" in self.buffer and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
+                if ("/MOTD" in self.buffer and self.debounce == False):  #Most servers send a /MOTD command after they've finished their intro
                     for chan in self.config["chans"]: #So that's our cue to start joining channels
                         self.sendraw("JOIN %s" % chan)
                         print("Joined %s" % chan)
-                        self.debounce == True # This is set because some servers may send MOTD more than once, and we don't want to spam-joi
+                        self.debounce == True # This is set because some people may say "/MOTD" and trigger the channel joining
                 temp=self.buffer
                 temp = temp.split("\n") #Splits newlines from the buffer, and returns it in a list
                 self.buffer=temp.pop( ) #This makes the buffer equal to the last line of the buffer. Why? Because sockets are hacky and sometimes you'll end up with half a sentence instead of a fully-received one.
@@ -117,19 +117,15 @@ class Pythabot:
                         print("PONG %s" % line[1])
                     if (line[1] == "PRIVMSG"): #If someone/something talks, start parsing it so the bot can figure out what to do
                         self.initparse(line)
-                    if (line[1] == "KICK" and line[3] == self.config["nick"] and self.settings["kickjoin"] == "on"): #Bot got kicked! 
-                        self.sendraw("JOIN %s" % line[2])
         except socket.error:
             print("Socket error. Reconnecting...")
             self.connect()
                     
     #system commands
     def sendraw(self,msg):
-        if (self.settings["mute"] == "off"):
-            self.sock.send(msg + "\r\n") #This sends raw data through the socket to the server. It also takes the burden of appending \r\n to the end of everything off.
+        self.sock.send(msg + "\r\n") #This sends raw data through the socket to the server. It also takes the burden of appending \r\n to the end of everything off.
     def privmsg(self,to,msg):
-        if (self.settings["mute"] == "off"):
-            self.sock.send("PRIVMSG %s :%s\r\n" % (to,msg)) #And now, you don't have to type out raw PRIVMSG statements either!
+        self.sock.send("PRIVMSG %s :%s\r\n" % (to,msg)) #And now, you don't have to type out raw PRIVMSG statements either!
 
     #Quits the server, closes the socket, and exits the program
     def quit(self,errmsg):
