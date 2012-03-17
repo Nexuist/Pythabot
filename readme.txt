@@ -80,7 +80,7 @@ is your hostmask. When doing owner commands Pythabot
 checks for the mask instead of the nick. This is so
 someone cannot just /nick and instantly gain owner
 privileges. Prefix is what you'll start commands 
-with (ex. "^","."). It must be one character only.
+with (ex. "^","."). It can be as long as you like.
 Quitmsg is the message you want to display
 when the bot quits. This can be anything you'd like.
 
