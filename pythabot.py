@@ -30,7 +30,7 @@ class Pythabot:
         except socket.error:
             self.quit("Could not connect to port %s, on %s." % (self.config["port"],self.config["host"])) #Here's that % in action
 
-    def addcommand(self,text,func,permission,arglength):
+    def addCommand(self,text,func,permission,arglength):
         #You use the addcommand function to add commands to the commandslist. You'll see what this is for later.
         self.commands[text] = {"func":func,"permission":permission,"arglength":arglength}
         self.commandlist.append(text)
