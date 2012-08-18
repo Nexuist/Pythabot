@@ -1,30 +1,10 @@
-================================================
--		PYTHABOT V3.2.5                -
-+	      Written in Python 	       +
--	     IRC Framework for beginners       -
-+	  Contact: admin@studiotech.tk         +
--	      Instruction Manual               -
-================================================
-
-Introduction
-============
-	Hello, there! I'm Techboy6601 and I'll
-be your tour guide for this short tour. Surely 
-you came here to make your own IRC bot? Yes?
-great! To start you'll need to know a bit of 
-Python, but just a little! Anyways, I'm just
-boring you now. Let's start!
-
+Pythabot v3.6
+IRC Framework for Bots
+Instruction Manual
 
 Setting up
 ==========
-	Make sure you have Python 2.7 installed.
-You can get that from http://python.org. Got it?
-Good. Start up IDLE (Start->All Programs->Python
-2.7->Python (Python Gui)). You can use IDLE 
-to make Python programs. Lets do that now! Click
-on File->New Window. Here is where we will write
-our Pythabot setup program. To start, write this:
+Make sure you have Python 2.7.2 installed. You may also have other python versions but 2.7.2 is the one Pythabot was developed and tested on. To begin, create a new .py file in the same directory as Pythabot.py and write the following:
 
 -------------------------------------------------
 #!/usr/bin/env python
@@ -32,16 +12,13 @@ our Pythabot setup program. To start, write this:
 import pythabot
 -------------------------------------------------
 
-The first line allows you to run the python file
-by clicking it. The second line imports the fram-
-work, which is what your bot will use. Now, in 
-order to 'create' your bot, you will need to create
-a default config dictionary. Don't worry; it sounds
-hard but it really is easy. Add this to your file:
+Configuration
+=============
+Pythabot's way of configuration is a dictionary which is passed on to the main class when created. This dictionary is called "config" and contains configuration details:
 
 --------------------------------------------------
 config = {\
-    "host":"",
+    "host":"", 
     "port":6667,
     "nick":"",
     "ident":"",
