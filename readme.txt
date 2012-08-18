@@ -18,53 +18,24 @@ Pythabot's way of configuration is a dictionary which is passed on to the main c
 
 --------------------------------------------------
 config = {\
-    "host":"", 
-    "port":6667,
-    "nick":"",
-    "ident":"",
-    "realname":"",
-    "pass":"",
-    "chans":[""],
-    "admins":[""],
-    "ownermask":"",
-    "prefix":"^",
-    "quitmsg":""
+    "host":"", # the IRC server to connect to
+    "port":6667, # the port of the host to connect to
+    "nick":"", # bot's nickname, can be anything as long as it is not registered
+    "ident":"", # bot's client, e.g. Pythabot, can be anything
+    "realname":"", # can be anything
+    "pass":"", # the password, if the bot is registered
+    "chans":[""], # the channels to join when started up
+    "admins":[""], # masks who have access  to admin commands
+    "ownermask":"", # your mask - complete control over bot
+    "prefix":"^", # what to say when you want to contact your bot 
+    "quitmsg":"" # bot's quit message when leaving
     }
 --------------------------------------------------
-
-Make sure you include the tabs. If you haven't 
-noticed, Python is a completely tab-based language.
-Anyways, lets go over this. What this code does is
-make a dictionary called config. A dictionary is
-a special term in Python that refers to a gathering
-of key:pair values. For example: if you were to
-call config["host"], you would get the value of host,
-which right now is empty. Let's fix that up. In the 
-quotes, type in the host address (ex. irc.freenode.n-
-et). You won't need to change the port unless it is
-some special type of IRC server. Make nick the bot's
-nick (ex. pythabot). Ident can be anything you'd like,
-such as "Pythabot" or "bot". Realname can also be an-
-ything you want. Pass, however, cannot. Make sure you
-register your bot before running it! If you have, pass
-should be the password you used to register your bot's
-nick. Chans is a list of channels you want the bot to
-join when it connects to the server (ex. ["#lol","#b-
-otters-test"]). Admins is a list of nicks that you
-want to hand administrator privileges to. Put them in
-the same way as you did the chans. Finally, ownermask
-is your hostmask. When doing owner commands Pythabot
-checks for the mask instead of the nick. This is so
-someone cannot just /nick and instantly gain owner
-privileges. Prefix is what you'll start commands 
-with (ex. "^","."). It can be as long as you like.
-Quitmsg is the message you want to display
-when the bot quits. This can be anything you'd like.
 
 
 Getting up and running
 ======================
-	In your python file, add the following code:
+In your python file, add the following code:
 
 -----------------------------------------------------
 bot = pythabot.Pythabot(config)
@@ -72,33 +43,26 @@ bot.connect()
 bot.listen()
 -----------------------------------------------------
 
-What does this do? Simple, really - first, we make a
-starter bot in the first line, and then we customize 
-it with the config dictionary you made before. Then,
-we connect to the server with the connect() command,
-and finally, we start the main loop that listens for
-commands and executes them. But wait! We're not done 
-yet! We still haven't added commands. Lets add a 'hi'
-command: Whenever somebody says hi to the bot, we 
-say hi back!
+This creates a new Pythabot class, tells it to connect to the host you gave it, and then start listening for commands.
+There's only one problem: there are no commands yet. Here's a diagram of how commands work:
+
+1. Create the command function
+2. Call the addCommand function
+3. Initialize the bot with the code above
+
+#1, create the command function:
 
 ------------------------------------------------------
 def hi(parseinfo):
 	bot.privmsg(parseinfo["chan"],"Hi!")
 ------------------------------------------------------
 
-
-Def declares a function. If you looked over the source,
-you would see privmsg sends a message to a specific ch-
-annel. The other way of interacting with the server thr-
-ough this is with the sendraw command, which sends a 
-raw message to the server. But enough of that - let's
-make our command get parsed! To do that, we use the 
-addcommand command. Lets modify our code.
+Privmsg is a function declared in the bot  framework: it makes the bot say something in a specific channel.
+To find out which channel someone said  "hi" in, we use parseinfo. More about parseinfo is located in the wiki.
 
 ------------------------------------------------------
 bot = pythabot.Pythabot(config)
-bot.addcommand("hi",hi,"all",1)
+bot.addCommand("hi",hi,"all",1)
 bot.connect()
 bot.listen()
 ------------------------------------------------------
@@ -117,12 +81,12 @@ is where it comes into play. The addcommand basically
 added a trigger: Whenever anyone says "hi", the hi
 function gets executed. It doesn't have to be "hi",
 though - it works with "bye","die","lol" or anything
-else. Lets go over permissions in more details.
+else. Let's go over permissions in more details.
 
 
 Permissions
 ===========
-	Permissions are what define user groups for
+Permissions are what define user groups for
 the bot. There are 3 user groups:
 
 	+ Owner - This is only one person who can
@@ -141,7 +105,7 @@ def admin(parseinfo):
 --------------------------------------------------------
 ...in the bot initialization section:
 --------------------------------------------------------
-bot.addcommand("admin",admin,"admins",2)
+bot.addCommand("admin",admin,"admins",2)
 --------------------------------------------------------
 
 Whenever an admin calls the admin command, the word after
@@ -155,7 +119,7 @@ able to use admin commands.
 
 String lengths
 ==============
-	Before being processed, strings are split into
+Before being processed, strings are split into
 pieces. Pythabot has to make sure you supply enough
 arguments to a command to prevent it from crashing.
 If you use the ^admin command from before without
@@ -172,7 +136,7 @@ will be one extra because the command name itself counts.)
 
 Parse info
 ==========
-	So you've made a few commands, set up your bot,
+So you've made a few commands, set up your bot,
 added triggers with proper string lengths and such. 
 Now what? Well, there's a lot more. Each command gets
 passed a dictionary - yep, another one! - which contains
@@ -194,7 +158,7 @@ your bot!
 
 Next steps
 ==========
-	You've made your bot. You have customized every aspect
+You've made your bot. You have customized every aspect
 of it and made custom commands for it. Your commands harness
 the power of parseinfo and you are generally satisfied with 
 you bot. Not there yet? There's hope still! In this folder,
