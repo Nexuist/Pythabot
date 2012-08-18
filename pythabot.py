@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys,socket,string
+import sys,socket,string, time
 
 
 class Pythabot:
@@ -86,7 +86,7 @@ class Pythabot:
                     
                 if (self.commands[msg]["permission"] == "admins"): #Now, this is different. This command only works for admins. 
                     if len(parseinfo["args"]) >= self.commands[msg]["arglength"]: #Check for argument length
-                        if parseinfo["sender"] in self.config["admins"]: #And now it checks if the sender (techboy6601) is in the admin list, which it isn't!
+                        if parseinfo["mask"] in self.config["admins"] or parseinfo["mask"] in self.config["ownermask"]: #And now it checks if the sender (techboy6601) is in the admin list, which it isn't!
                             self.commands[msg]["func"](parseinfo)
                         else:
                             self.privmsg(parseinfo["chan"],"Error: You are not an admin!")
