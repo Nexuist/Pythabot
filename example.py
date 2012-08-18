@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# this is a bot created with the Pythabot framework
+# it has some commands to get you started
+
 import pythabot,time
 
 def hi(parseinfo):
