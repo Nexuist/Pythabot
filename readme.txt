@@ -4,7 +4,8 @@ Instruction Manual
 
 Setting up
 ==========
-Make sure you have Python 2.7.2 installed. You may also have other python versions but 2.7.2 is the one Pythabot was developed and tested on. To begin, create a new .py file in the same directory as Pythabot.py and write the following:
+Make sure you have Python 2.7.2 installed. You may also have other python versions but 2.7.2 is the one Pythabot was 
+developed and tested on. To begin, create a new .py file in the same directory as Pythabot.py and write the following:
 
 -------------------------------------------------
 #!/usr/bin/env python
@@ -14,7 +15,8 @@ import pythabot
 
 Configuration
 =============
-Pythabot's way of configuration is a dictionary which is passed on to the main class when created. This dictionary is called "config" and contains configuration details:
+Pythabot's way of configuration is a dictionary which is passed on to the main class when created. 
+This dictionary is called "config" and contains configuration details:
 
 --------------------------------------------------
 config = {\
