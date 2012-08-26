@@ -1,24 +1,23 @@
-Pythabot v3.6
-IRC Framework for Bots
-Instruction Manual
+#Pythabot v3.6
+###IRC Framework for Bots
 
-Setting up
+Setting Up
 ==========
 Make sure you have Python 2.7.2 installed. You may also have other python versions but 2.7.2 is the one Pythabot was 
 developed and tested on. To begin, create a new .py file in the same directory as Pythabot.py and write the following:
 
--------------------------------------------------
+```python
 #!/usr/bin/env python
 
 import pythabot
--------------------------------------------------
+```
 
 Configuration
 =============
 Pythabot's way of configuration is a dictionary which is passed on to the main class when created. 
 This dictionary is called "config" and contains configuration details:
 
---------------------------------------------------
+```python
 config = {\
     "host":"", # the IRC server to connect to
     "port":6667, # the port of the host to connect to
@@ -27,23 +26,23 @@ config = {\
     "realname":"", # can be anything
     "pass":"", # the password, if the bot is registered
     "chans":[""], # the channels to join when started up
-    "admins":[""], # masks who have access  to admin commands
+    "admins":[""], # masks who have access to admin commands
     "ownermask":"", # your mask - complete control over bot
     "prefix":"^", # what to say when you want to contact your bot 
     "quitmsg":"" # bot's quit message when leaving
     }
---------------------------------------------------
+```
 
 
 Getting up and running
 ======================
 In your python file, add the following code:
 
------------------------------------------------------
+```python
 bot = pythabot.Pythabot(config)
 bot.connect()
 bot.listen()
------------------------------------------------------
+```
 
 This creates a new Pythabot class, tells it to connect to the host you gave it, and then start listening for commands.
 There's only one problem: there are no commands yet. Here's a diagram of how commands work:
@@ -54,36 +53,36 @@ There's only one problem: there are no commands yet. Here's a diagram of how com
 
 #1, create the command function:
 
-------------------------------------------------------
+```python
 def hi(parseinfo):
 	bot.privmsg(parseinfo["chan"],"Hi!")
-------------------------------------------------------
+```
 
-Privmsg is a function declared in the bot  framework: it makes the bot say something in a specific channel.
+Privmsg is a function declared in the bot framework: it makes the bot say something in a specific channel.
 To find out which channel someone said  "hi" in, we use parseinfo. More about parseinfo is located in the wiki.
 
-------------------------------------------------------
+```python
 bot = pythabot.Pythabot(config)
 bot.addCommand("hi",hi,"all",1)
 bot.connect()
 bot.listen()
-------------------------------------------------------
+```
 
-The addcommand command works like this:
+The addCommand command works like this:
 
-bot.addcommand(text,function,permission,length)
+```python
+bot.addCommand(text,function,permission,length)
+```
 
-Where text is what is needed to be spoken e.g. "hi",
-function is the function to be executed e.g. hi,
-permission is the permission e.g. all,
+Where text is what is needed to be spoken - "hi" in our case,
+function is the function to be executed - hi in our case,
+permission is the permission such as all,
 and length is how long the string needs to be.
 
 Remember when we made the hi function earlier? This
-is where it comes into play. The addcommand basically
+is where it comes into play. Using addCommand basically
 added a trigger: Whenever anyone says "hi", the hi
-function gets executed. It doesn't have to be "hi",
-though - it works with "bye","die","lol" or anything
-else. Let's go over permissions in more details.
+function gets executed.
 
 
 Permissions
@@ -91,27 +90,30 @@ Permissions
 Permissions are what define user groups for
 the bot. There are 3 user groups:
 
-	+ Owner - This is only one person who can
-control the bot to its fullest potential
-	+ Admin - A group of people who can use
-most of the bot's commands
-	+ All - Everybody, from guests to bots to
-ops.
+	* Owner
+	* Admin
+	* All 
+ 
+Owner, in this case, would be you. You would basically want yourself to have access to all commands. 
+You can decide admins with judgement. Of course, you control the commands, so you don't need to give
+any commands to admins if you so choose.
 
-You can make somebody by adding them to the admin
-list. Here's code that shows that:
+You can make somebody an admin by adding them to the admin
+list. Here's some code that shows how do do that:
 
---------------------------------------------------------
+```python
 def admin(parseinfo):
     bot.config["admins"].append(parseinfo["args"][1])
---------------------------------------------------------
-...in the bot initialization section:
---------------------------------------------------------
-bot.addCommand("admin",admin,"admins",2)
---------------------------------------------------------
+```
 
-Whenever an admin calls the admin command, the word after
-admin will become an admin. For example:
+...and in the bot initialization section:
+
+```python
+bot.addCommand("admin",admin,"admins",2)
+```
+
+Whenever an admin calls this admin command, the nick defined after
+the command will become an admin. For example:
 
 ^admin joey
 
@@ -160,12 +162,12 @@ your bot!
 
 Next steps
 ==========
-You've made your bot. You have customized every aspect
-of it and made custom commands for it. Your commands harness
-the power of parseinfo and you are generally satisfied with 
-you bot. Not there yet? There's hope still! In this folder,
-open example.py. It contains some example code that you
-can build off of.
+With the ability to use Python, you can make your bot do anything!
+This includes shutting off your computer, running shell commands,
+sending mail, and anything else that is possible with Python.
+
+Also keep in mind that Pythabot is completely open-source. Feel free to modify
+it, but please give me (Techboy6601) credit.
 
 
 Happy bot building!
