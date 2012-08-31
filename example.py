@@ -46,21 +46,6 @@ def raw(parseinfo):
 def kick(parseinfo):
     bot.sendraw("KICK %s %s %s" % (parseinfo["chan"],parseinfo["args"][1]," ".join(parseinfo["args"][2:])))
 
-def mute(parseinfo):
-    if bot.settings["mute"] == "off":
-        bot.settings["mute"] = "on"
-    else:
-        bot.settings["mute"] = "off"
-        bot.privmsg(parseinfo["chan"],"Mute off.")
-
-def kickjoin(parseinfo):
-    if bot.settings["kickjoin"] == "off":
-        bot.settings["kickjoin"] = "on"
-        bot.privmsg(parseinfo["chan"],"Kickjoin on.")
-    else:
-        bot.settings["kickjoin"] = "off"
-        bot.privmsg(parseinfo["chan"],"Kickjoin off.")
-
 def prefix(parseinfo):
     prefix = parseinfo["args"][1]
     prefix = prefix[0:1]
@@ -78,13 +63,13 @@ config = {\
     "port":6667,
     "nick":"",
     "ident":"",
-    "realname":"",
+    "realname":"PythabotV3.6",
     "pass":"",
-    "chans":["#botters-test","#botters"],
+    "chans":[""],
     "admins":[""],
     "ownermask":"",
     "prefix":"^",
-    "quitmsg":"This is my quit message."
+    "quitmsg":""
     }
 bot = pythabot.Pythabot(config)
 startime =  time.strftime("%a, %B %d %Y [%H:%M:%S]", time.gmtime())
@@ -100,8 +85,6 @@ bot.addCommand("join",join,"admins",2)
 bot.addCommand("part",part,"admins",2)
 bot.addCommand("raw",raw,"all",1)
 bot.addCommand("kick",kick,"admins",3)
-bot.addCommand("mute",mute,"admins",1)
-bot.addCommand("kickjoin",kickjoin,"admins",1)
 bot.addCommand("prefix",prefix,"owner",2)
 bot.addCommand("sendraw",sendraw,"owner",2)
 bot.addCommand("start-time",startimefunc,"all",1)
