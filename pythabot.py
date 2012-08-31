@@ -6,7 +6,7 @@ import sys,socket,string, time
 class Pythabot:
     #This will be executed when the class is created, so here we initialize all the important variables
     def __init__(self,config):
-        print("Pythabot v3.6")
+        print("Pythabot v3.6.1")
         print("Simple IRC framework")
         print("Made by Techboy6601")
         self.config = config
@@ -23,7 +23,10 @@ class Pythabot:
         try:
             self.sock.connect((self.config["host"],self.config["port"]))
             print("Connected to %s" % self.config["host"])
-            self.sendraw("PASS %s" % self.config["pass"]) #This sends the password to the IRC server using the PASS command; this must come before anything else
+            if (len(self.config["pass"]) != 0): #Check if password exists
+                self.sendraw("PASS %s" % self.config["pass"]) #This sends the password to the IRC server using the PASS command; this must come before anything else
+            else:
+                print("Account identification bypassed.")
             self.sendraw("NICK %s" % self.config["nick"]) #This sends the nick to the IRC server using the NICK command
             self.sendraw("USER %s %s bla :%s" % (self.config["ident"],self.config["host"],self.config["realname"])) #This is the USER command. It sends your IDENT (client), HOST, (irc server domain), and REALNAME (can be anything you want)
             print("Identified as %s" % self.config["nick"])
