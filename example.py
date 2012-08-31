@@ -34,7 +34,7 @@ def join(parseinfo):
     bot.config["chans"].append(parseinfo["args"][1])
     bot.sendraw("JOIN %s" % parseinfo["args"][1])
     bot.privmsg(parseinfo["chan"],"Joined %s" % parseinfo["args"][1])
-
+    
 def part(parseinfo):
     bot.config["chans"].remove(parseinfo["args"][1])
     bot.sendraw("PART %s" % parseinfo["args"][1])
