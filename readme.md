@@ -51,7 +51,7 @@ There's only one problem: there are no commands yet. Here's a diagram of how com
 2. Call the addCommand function
 3. Initialize the bot with the code above
 
-#1, create the command function:
+###Create the command function
 
 ```python
 def hi(parseinfo):
@@ -68,7 +68,8 @@ bot.connect()
 bot.listen()
 ```
 
-The addCommand command works like this:
+###Call the addCommand function
+Here's how addCommand works:
 
 ```python
 bot.addCommand(text,function,permission,length)
