@@ -148,14 +148,13 @@ passed a dictionary - yep, another one! - which contains
 information gatherered from the string. Here's the
 specification:
 
-sender - The sender's nick, ex. "techboy6601"
-ident - The sender's IDENT, ex. "IceChat77"
-mask - The sender's mask, ex. "1.33.7.0@lol.net"
-chan - The channel the message was sent from, ex. "#botters"
-msg - The message, ex. "hi lol"
-firstarg - The first argument, ex. "hi"
-args - A list containing the message split into pieces, ex. 
-["hi","lol"]
+- sender - The sender's nick, ex. "techboy6601"
+- ident - The sender's IDENT, ex. "IceChat77"
+- mask - The sender's mask, ex. "1.33.7.0@lol.net"
+- chan - The channel the message was sent from, ex. "#botters"
+- msg - The message, ex. "hi lol"
+- firstarg - The first argument, ex. "hi"
+- args - A list containing the message split into pieces, ex. ["hi","lol"]
 
 You can use these to your advantage to get the most out of
 your bot!
@@ -173,7 +172,7 @@ it, but please give me (Techboy6601) credit.
 
 Happy bot building!
 
-- Techboy6601
+Techboy6601
 
 
 
