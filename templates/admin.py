@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 #These commands were created to help with channel administration.
-#It includes mode change, self OP, raw message, channel joins and
-#parts, kicks, prefix changer, and even a start timer!
+#It includes mode change, self OP, raw message, channel joins,
+#parts, kicks, a prefix changer, and even a start timer!
 
 
 import pythabot,time
