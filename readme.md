@@ -1,4 +1,4 @@
-#Pythabot v7
+#Pythabot v3.7
 ###IRC Framework for Bots
 
 Setting Up
