@@ -6,7 +6,7 @@ import sys,socket,string, time
 class Pythabot:
     #This will be executed when the class is created, so here we initialize all the important variables
     def __init__(self,config):
-        print("Pythabot v3.6.1")
+        print("Pythabot v3.7")
         print("Simple IRC framework")
         print("Made by Techboy6601")
         self.config = config
@@ -115,6 +115,9 @@ class Pythabot:
                 for line in temp:
                     line=string.rstrip(line)
                     line=line.split(" ")
+                    if(line[1] == "433"): #Check if the username is in use
+                        print("Error: Username '%s' is already in use! Aborting." % self.config["nick"])
+                        self.quit()
                     if(line[0]=="PING"): #Make sure to respond to PINGs!
                         self.sendraw("PONG %s" % line[1])
                         print("PONG %s" % line[1])
