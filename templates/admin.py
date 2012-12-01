@@ -20,9 +20,9 @@ def selfop(parseinfo):
     bot.privmsg("chanserv","op %s %s" % (parseinfo["chan"],bot.config["nick"]))
     
 def list(parseinfo):
-    bot.privmsg(parseinfo["chan"],"Commands: " + " ".join(bot.commandlist))
-    bot.privmsg(parseinfo["chan"],"Channels I'm in: " + " ".join(config["chans"]))
-    bot.privmsg(parseinfo["chan"],"Admins: " + " ".join(bot.config["admins"]))
+    bot.privmsg(parseinfo["chan"],"Commands: " + ", ".join(bot.commandlist))
+    bot.privmsg(parseinfo["chan"],"Channels I'm in: " + ", ".join(config["chans"]))
+    bot.privmsg(parseinfo["chan"],"Admins: " + ", ".join(bot.config["admins"]))
 
 def admin(parseinfo):
     bot.config["admins"].append(parseinfo["args"][1])
@@ -65,7 +65,7 @@ config = {\
     "port":6667,
     "nick":"",
     "ident":"",
-    "realname":"PythabotV3.6",
+    "realname":"PythabotV3.7",
     "pass":"",
     "chans":[""],
     "admins":[""],
@@ -81,7 +81,6 @@ bot.addCommand("mode",mode,"admins",3)
 bot.addCommand("admin",admin,"owner",2)
 bot.addCommand("deladmin",deladmin,"owner",2)
 bot.addCommand("selfop",selfop,"all",1)
-bot.addCommand("help",list,"all",1)
 bot.addCommand("list",list,"all",1)
 bot.addCommand("join",join,"admins",2)
 bot.addCommand("part",part,"admins",2)
