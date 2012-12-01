@@ -50,7 +50,6 @@ def kick(parseinfo):
 
 def prefix(parseinfo):
     prefix = parseinfo["args"][1]
-    prefix = prefix[0:1]
     bot.prefix = prefix
     bot.privmsg(parseinfo["chan"],"My prefix is now %s." % prefix)
 
