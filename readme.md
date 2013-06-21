@@ -93,8 +93,6 @@ Similarly, if a person's hostmask is included in the admins list (also in the co
 
 All signifies what it's called - everyone is included. This includes the owner, admins, other bots, and anything else. 
 
-
-If you would like to learn more about Pythabot, don't hesitate to visit its [Wiki](https://github.com/Techboy6601/Pythabot/wiki)
 Next steps
 ==========
 With the ability to use Python, you can make your bot do anything!
@@ -102,12 +100,9 @@ This includes shutting off your computer, running shell commands,
 sending mail, and anything else that is possible with Python.
 
 Also keep in mind that Pythabot is completely open-source. Feel free to modify
-it, but please give me (Techboy6601) credit.
+it, but please give me (Nexuist) credit.
 
 
 Happy bot building!
-
-Techboy6601
-
 
 
