@@ -3,7 +3,7 @@
 
 Oh how far we've come.
 
-This was my very first major software project, started around March 2012. I had just turned 13, and had gotten addicted to Internet Relay Chat. So, naturally, I wrote software for it.
+This was my very first major software project, started around March 2012. I had just turned 13, and got addicted to Internet Relay Chat. So, naturally, I wrote software for it.
 
 In this project I learned about networking: TCP/IP, sockets, protocols, etc. It was actually a very good learning experience.
 
@@ -18,7 +18,7 @@ So go ahead and look at this project, but remember: A 13 year old wrote it, so d
 
 ### Wiki
 
-I set up a wiki for this project explaining the basic concepts employed by this framework. You can browse it [here](https://github.com/Nexuist/Pythabot/wiki).
+I set up a wiki explaining the basic concepts employed by this framework. You can browse it [here](https://github.com/Nexuist/Pythabot/wiki).
 
 ### License
 From the original documentation below:
