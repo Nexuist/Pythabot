@@ -1,6 +1,5 @@
 ## Story Time!
 
-
 Oh how far we've come.
 
 This was my very first major software project, started around March 2012. I had just turned 13, and got addicted to Internet Relay Chat. So, naturally, I wrote software for it.
