@@ -58,8 +58,8 @@ This was the original README written in 2012. It is still here for historical pu
 
 ---
 
-#Pythabot v3.7
-###IRC Framework for Bots
+# Pythabot v3.7
+### IRC Framework for Bots
 
 Configuration
 =============
@@ -102,7 +102,7 @@ Here's an overview of how commands work:
 2. Call the addCommand function
 3. Initialize the bot
 
-###Create the command function
+### Create the command function
 
 ```python
 def hi(parseinfo):
@@ -119,7 +119,7 @@ bot.connect()
 bot.listen()
 ```
 
-###Call the addCommand function and initialize the bot
+### Call the addCommand function and initialize the bot
 addCommand is a function which adds a command to the bot's command list, which tells it to listen for the command
 and enables it to call your command function (the one you made earlier).
 
